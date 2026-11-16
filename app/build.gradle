@@ -6,6 +6,14 @@ android {
     namespace 'com.custom.steamdecklauncher'
     compileSdk 34
 
+    sourceSets {
+        main {
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+            java.srcDirs = ['src/main/java']
+            res.srcDirs = ['src/main/res']
+        }
+    }
+
     defaultConfig {
         applicationId "com.custom.steamdecklauncher"
         minSdk 26
