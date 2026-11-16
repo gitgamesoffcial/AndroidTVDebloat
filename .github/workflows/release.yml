@@ -1,0 +1,33 @@
+name: Publish APK Release
+
+on:
+  workflow_run:
+    workflows: ["Build Android TV Launcher APK"]
+    types:
+      - completed
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download APK Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: SteamDeckTVLauncher-APK
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: Rename APK for Release
+        run: mv app-debug.apk SteamDeckTVLauncher.apk
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.${{ github.event.workflow_run.run_number }}
+          name: SteamDeck TV Launcher v1.0.${{ github.event.workflow_run.run_number }}
+          files: SteamDeckTVLauncher.apk
+          generate_release_notes: true
