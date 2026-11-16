@@ -22,8 +22,41 @@ jobs:
         with:
           gradle-version: '8.10.2'
 
-      - name: Show Exact Repo Files
-        run: find . -maxdepth 7 -not -path '*/.*'
+      - name: Ensure Valid Android XML Files
+        run: |
+          mkdir -p app/main/src/res/drawable
+          cat << 'EOF' > app/main/AndroidManifest.xml
+          <?xml version="1.0" encoding="utf-8"?>
+          <manifest xmlns:android="http://android.com">
+              <uses-feature android:name="android.software.leanback" android:required="false" />
+              <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+              <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+              <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+              <application android:allowBackup="true" android:label="SteamDeck TV" android:theme="@style/Theme.AppCompat.NoActionBar">
+                  <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTask" android:stateNotNeeded="true">
+                      <intent-filter>
+                          <action android:name="android.intent.action.MAIN" />
+                          <category android:name="android.intent.category.HOME" />
+                          <category android:name="android.intent.category.DEFAULT" />
+                          <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+                      </intent-filter>
+                  </activity>
+                  <receiver android:name=".BootReceiver" android:exported="true">
+                      <intent-filter>
+                          <action android:name="android.intent.action.BOOT_COMPLETED" />
+                      </intent-filter>
+                  </receiver>
+              </application>
+          </manifest>
+          EOF
+          cat << 'EOF' > app/main/src/res/drawable/ic_steam_deck.xml
+          <vector xmlns:android="http://android.com"
+              android:width="64dp" android:height="64dp"
+              android:viewportWidth="100" android:viewportHeight="100">
+              <path android:fillColor="#1A9FFF" android:pathData="M50,8 A42,42 0 1,1 50,92 L50,76 A26,26 0 1,0 50,24 Z" />
+              <path android:fillColor="#FFFFFF" android:pathData="M50,31 A19,19 0 1,1 50,69 A19,19 0 1,1 50,31 Z" />
+          </vector>
+          EOF
 
       - name: Build Debug APK
         run: gradle assembleDebug
