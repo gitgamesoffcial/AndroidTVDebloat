@@ -22,8 +22,8 @@ jobs:
         with:
           gradle-version: '8.10.2'
 
-      - name: Print File Tree
-        run: find . -maxdepth 6 -not -path '*/.*'
+      - name: Show Exact Repo Files
+        run: find . -maxdepth 7 -not -path '*/.*'
 
       - name: Build Debug APK
         run: gradle assembleDebug
