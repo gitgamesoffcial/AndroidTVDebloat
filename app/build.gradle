@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'com.custom.steamdecklauncher'
+    namespace 'com.custom.steamdeckphone'
     compileSdk 34
 
     sourceSets {
@@ -15,7 +15,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.custom.steamdecklauncher"
+        applicationId "com.custom.steamdeckphone"
         minSdk 26
         targetSdk 34
         versionCode 1
@@ -35,5 +35,4 @@ android {
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.recyclerview:recyclerview:1.3.2'
 }
