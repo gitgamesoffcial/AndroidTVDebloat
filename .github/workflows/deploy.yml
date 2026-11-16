@@ -24,10 +24,11 @@ jobs:
 
       - name: Ensure Valid Android XML Files
         run: |
+          NS="http://schemas.android"".""com/apk/res/android"
           mkdir -p app/main/src/res/drawable
-          cat << 'EOF' > app/main/AndroidManifest.xml
+          cat << EOF > app/main/AndroidManifest.xml
           <?xml version="1.0" encoding="utf-8"?>
-          <manifest xmlns:android="http://android.com">
+          <manifest xmlns:android="$NS">
               <uses-feature android:name="android.software.leanback" android:required="false" />
               <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
               <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
@@ -49,8 +50,8 @@ jobs:
               </application>
           </manifest>
           EOF
-          cat << 'EOF' > app/main/src/res/drawable/ic_steam_deck.xml
-          <vector xmlns:android="http://android.com"
+          cat << EOF > app/main/src/res/drawable/ic_steam_deck.xml
+          <vector xmlns:android="$NS"
               android:width="64dp" android:height="64dp"
               android:viewportWidth="100" android:viewportHeight="100">
               <path android:fillColor="#1A9FFF" android:pathData="M50,8 A42,42 0 1,1 50,92 L50,76 A26,26 0 1,0 50,24 Z" />
