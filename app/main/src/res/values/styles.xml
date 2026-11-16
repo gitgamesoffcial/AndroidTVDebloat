@@ -1,0 +1,11 @@
+<resources>
+    <style name="Theme.TVDebloat" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">#FF3B30</item>
+        <item name="colorPrimaryDark">#070708</item>
+        <item name="colorAccent">#FF3B30</item>
+        <item name="android:statusBarColor">#070708</item>
+        <item name="android:navigationBarColor">#070708</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+</resources>
