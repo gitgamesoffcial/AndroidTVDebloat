@@ -1,0 +1,14 @@
+<vector xmlns:android="http://android.com"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    <!-- Outer C-Ring -->
+    <path
+        android:fillColor="#1A9FFF"
+        android:pathData="M50,8 A42,42 0 1,1 50,92 L50,76 A26,26 0 1,0 50,24 Z" />
+    <!-- Inner Circle -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,31 A19,19 0 1,1 50,69 A19,19 0 1,1 50,31 Z" />
+</vector>
